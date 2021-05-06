@@ -1,0 +1,165 @@
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.app-header,
+.app-footer {
+  display: flex;
+  align-items: center;
+}
+
+.app-header {
+  padding: 0 16px;
+  background-color: #092642;
+  height: 64px;
+  color: #fff;
+}
+
+.app-content {
+  padding: 16px;
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.app-footer {
+  justify-content: center;
+  padding: 0 16px;
+  background-color: #092642;
+  height: 64px;
+  color: #fff;
+}
+
+.header-title {
+  display: inline-block;
+}
+
+.social-url {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-url + .social-url {
+  margin-left: 5px;
+}
+
+.social-url:link,
+.social-url:visited {
+  color: #fff;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.social-icon img {
+  max-width: 100%;
+}
+
+.social-icon-description {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.social-icons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.columns-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-column {
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+
+.content-column img {
+  max-width: 100%;
+}
+
+.explain-text {
+  text-align: justify;
+}
+
+.content-title {
+  font-size: 24px;
+}
+
+@media (min-width: 321px) {
+  .app-header,
+  .app-footer {
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  .content-title {
+    font-size: 28px;
+  }
+
+  .pull-center {
+    width: calc(768px - 16px * 2);
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-header {
+    height: 100px;
+  }
+
+  .app-content {
+    padding: 24px;
+    font-size: 18px;
+  }
+
+  .app-footer {
+    max-height: 80px;
+  }
+  
+  .content-title {
+    font-size: 36px;
+  }
+  .columns-wrapper {
+    flex-direction: row;
+  }
+
+  .content-column + .content-column {
+    margin-left: 32px;
+  }
+  
+  .content-column-left {
+    flex-basis: 50%;
+  }
+  .content-column-right {
+    flex-basis: 50%;
+  }
+  .content-column-right img {
+    margin-top: 16px;
+  }
+  .pull-center {
+    width: calc(1024px - 24px * 2);
+    margin: 0 auto;
+  }
+}
