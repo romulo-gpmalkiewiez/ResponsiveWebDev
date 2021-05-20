@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 2</title>
+
+    <link rel="stylesheet" type="text/css" href="../../styles/flex.css" />
+    <link rel="stylesheet" type="text/css" href="../../styles/app.css" />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-wrapper pull-center">
+        <h1 class="header-title">OKFX</h1>
+        <span class="header-subtitle">Saving Lifes</span>
+      </div>
+    </header>
+    <section class="app-content">
+      <div class="content-wrapper pull-center">
+        <h1 class="content-title">LANÇAMENTO DE NOTAS</h1>
+        <form
+          name="lancamento-notas-form"
+          method="post"
+          action="index.html"
+          autocomplete="off"
+          target="_self"
+          enctype="multipart/form-data"
+        >
+          <label id="disciplinaLabel" for="disciplina">Selecione a disciplina:</label>
+          <select name="disciplina">
+            <option title="Teste1" value="1">Introdução à Informática</option>
+            <option title="Teste2" value="2">Linguagens de Programação</option>
+            <option title="Teste2" value="3">Programação de Computadores</option>
+          </select>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome do Aluno</th>
+                <th>Prova 1</th>
+                <th>Prova 2</th>
+                <th>Exame</th>
+                <th>Média</th>
+                <th>Faltas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Joana da Silva</td>
+                <td><input type="number" name="prova1" min="0" max="10" required title="Deve ser um número decimal" /></td>
+                <td><input type="number" name="prova2" min="0" max="10" required title="Deve ser um número decimal" /></td>
+                <td><input type="number" name="exame" min="0" max="10" title="Deve ser um número decimal" /></td>
+                <td><input type="number" tabindex="-1" min="0" max="10" readonly name="media" /></td>
+                <td><input type="number" name="faltas" min="0" max="16" /></td>
+              </tr>
+              <tr>
+                <td>Maria do Socorro</td>
+                <td><input type="number" name="prova1" min="0" max="10" required title="Deve ser um número decimal" /></td>
+                <td><input type="number" name="prova2" min="0" max="10" required title="Deve ser um número decimal" /></td>
+                <td><input type="number" name="exame" min="0" max="10" title="Deve ser um número decimal" /></td>
+                <td><input type="number" tabindex="-1" min="0" max="10" readonly name="media" /></td>
+                <td><input type="number" name="faltas" min="0" max="16" /></td>
+              </tr>
+              <tr>
+                <td>Pedro Santos</td>
+                <td><input type="number" name="prova1" min="0" max="10" required title="Deve ser um número decimal" /></td>
+                <td><input type="number" name="prova2" min="0" max="10" required title="Deve ser um número decimal" /></td>
+                <td><input type="number" name="exame" min="0" max="10" title="Deve ser um número decimal" /></td>
+                <td><input type="number" tabindex="-1" min="0" max="10" readonly name="media" /></td>
+                <td><input type="number" name="faltas" min="0" max="16" /></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit">Salvar</button>
+          <button type="reset" form="lancamento-notas-form">Limpar</button>
+        </form>
+      </div>
+    </section>
+    <footer class="app-footer">
+      <div class="footer-wrapper pull-center">
+        <div class="social-icons-wrapper">
+          <a
+            class="social-url"
+            title="GitHub"
+            target="_blank"
+            href="https://github.com/romulo-gpmalkiewiez"
+          >
+            <span class="social-icon">
+              <img
+                src="https://image.flaticon.com/icons/png/512/25/25231.png"
+                alt="GitHub"
+              />
+            </span>
+            <span class="social-icon-description">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
