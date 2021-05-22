@@ -1,0 +1,33 @@
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  color: white;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  text-align: left;
+  color: orangered;
+}
+
+p {
+  width: 550px;
+  font-family: 14px;
+  text-align: justify;
+  color: black;
+  text-indent: 50px;
+}
+
+.caixa {
+  width: 550px;
+  height: 70px;
+  border: none;
+  margin: 1px;
+  position: relative;
+  background-color: rgb(102, 58, 87);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
