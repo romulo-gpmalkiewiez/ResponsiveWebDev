@@ -1,0 +1,9 @@
+@media (max-width: 320px) {
+  .app-content {
+    padding: 0;
+  }
+}
+
+.content-wrapper {
+  background-color: blue;
+}
