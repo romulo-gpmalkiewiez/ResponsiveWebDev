@@ -15,7 +15,7 @@ const CALC_CLASSNAMES = Object.freeze({
 function CalculatorFactory() {
   this.create = function () {
     return new Calculator().getElement();
-  }
+  };
 }
 
 class Calculator {
@@ -34,7 +34,7 @@ class Calculator {
     this.createButtons();
     this.attachDOMEventListeners();
   }
-  
+
   getElement() {
     return this.element;
   }
@@ -84,12 +84,12 @@ class Calculator {
 
     this.createButton('CE', 'Clear');
     this.createButton('C', 'Clear');
-    this.createButton(backspaceIcon, "Backspace");
+    this.createButton(backspaceIcon, 'Backspace');
     this.createButton('÷', '/');
     this.createButton('7');
     this.createButton('8');
     this.createButton('9');
-    this.createButton('x', "*");
+    this.createButton('x', '*');
     this.createButton('4');
     this.createButton('5');
     this.createButton('6');
@@ -101,7 +101,7 @@ class Calculator {
     this.createButton('+/-');
     this.createButton('0');
     this.createButton('.');
-    this.createButton('=', "Equal");
+    this.createButton('=', 'Equal');
   }
 
   createIcon(iconClassName) {
@@ -116,7 +116,7 @@ class Calculator {
     const isEmpty = !value || value === '0';
 
     if (isEmpty) {
-      this.displayInput.value = key
+      this.displayInput.value = key;
     } else if (value.length < DISPLAY_MAX_CHARS) {
       this.displayInput.value += key;
     }
@@ -136,11 +136,19 @@ class Calculator {
     } catch {
       this.displayInput.value = 'Error';
     }
-
   }
 
   handleClear() {
     this.displayInput.value = '0';
+  }
+
+  handleInvertSignal() {
+    const value = Number(this.displayInput.value);
+    const isNumber = !isNaN(value);
+
+    if (isNumber) {
+      this.displayInput.value = value * -1;
+    }
   }
 
   handleBackspace() {
@@ -161,20 +169,23 @@ class Calculator {
     const isDot = key === '.';
 
     switch (key) {
-      case "Equal":
-      case "Enter":
+      case 'Equal':
+      case 'Enter':
         this.handleCalculate();
         break;
-      case "Backspace":
+      case 'Backspace':
         if (ctrlKey) {
           this.handleClear();
         } else {
           this.handleBackspace();
         }
         break;
-      case "Clear":
-          this.handleClear();
-          break;
+      case 'Clear':
+        this.handleClear();
+        break;
+      case '+/-':
+        this.handleInvertSignal();
+        break;
       default:
         if (isNum || isOpr || isDot) {
           this.handleKeyAdd(key);
@@ -192,11 +203,10 @@ class Calculator {
       if (actionCallback && !actionKey) {
         actionCallback();
       } else {
-        this.handleKeyDown({ key: actionKey || content })
+        this.handleKeyDown({ key: actionKey || content });
       }
     });
   }
 
   destroy() {}
-
 }
