@@ -25,6 +25,7 @@ class Calculator {
 
   constructor() {
     this.init();
+    this.initState();
   }
 
   init() {
@@ -33,6 +34,29 @@ class Calculator {
     this.createButtonsWrapper();
     this.createButtons();
     this.attachDOMEventListeners();
+  }
+
+  initState() {
+    this.state = {
+      hasError: false,
+      hasResult: false,
+    };
+  }
+
+  hasError() {
+    return this.state.hasError;
+  }
+
+  setHasError(hasError = true) {
+    this.state.hasError = hasError;
+  }
+
+  hasResult() {
+    return this.state.hasResult;
+  }
+
+  setHasResult(hasResult = true) {
+    this.state.hasResult = hasResult;
   }
 
   getElement() {
@@ -111,14 +135,23 @@ class Calculator {
     return icon;
   }
 
+  setDisplay(value) {
+    let result = typeof value !== 'string'
+      ? value.toString()
+      : value;
+
+    result = result.substr(0, DISPLAY_MAX_CHARS);
+    this.displayInput.value = result;
+  }
+
   handleKeyAdd(key) {
     const { value } = this.displayInput;
     const isEmpty = !value || value === '0';
 
     if (isEmpty) {
-      this.displayInput.value = key;
+      this.setDisplay(key)
     } else if (value.length < DISPLAY_MAX_CHARS) {
-      this.displayInput.value += key;
+      this.setDisplay(`${value}${key}`);
     }
   }
 
@@ -132,14 +165,16 @@ class Calculator {
         throw new Error('Invalid entry.');
       }
 
-      this.displayInput.value = result;
+      this.setDisplay(result);
+      this.setHasResult();
     } catch {
-      this.displayInput.value = 'Error';
+      this.setDisplay('Error');
+      this.setHasError();
     }
   }
 
   handleClear() {
-    this.displayInput.value = '0';
+    this.setDisplay('0');
   }
 
   handleInvertSignal() {
@@ -147,7 +182,7 @@ class Calculator {
     const isNumber = !isNaN(value);
 
     if (isNumber) {
-      this.displayInput.value = value * -1;
+      this.setDisplay(value * -1);
     }
   }
 
@@ -159,14 +194,30 @@ class Calculator {
       return this.handleClear();
     }
 
-    displayInput.value = value.slice(0, value.length - 1);
+    const result = value.slice(0, value.length - 1);
+    this.setDisplay(result);
   }
 
   handleKeyDown(keyboardEvent) {
     const { key, ctrlKey } = keyboardEvent;
-    const isNum = !isNaN(parseInt(key));
+    const isNum = !isNaN(Number(key));
     const isOpr = ['+', '-', '/', '*'].includes(key);
     const isDot = key === '.';
+
+    if (this.hasResult()) {
+      if (isNum) {
+        this.handleClear();
+      }
+
+      if (isOpr || isNum || isDot) {
+        this.initState();
+      }
+    }
+
+    if (this.hasError()) {
+      this.handleClear();
+      this.initState();
+    }
 
     switch (key) {
       case 'Equal':
