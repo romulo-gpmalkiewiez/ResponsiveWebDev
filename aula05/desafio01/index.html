@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 04 - Desafio 01</title>
+
+    <script type="text/javascript">
+      var xmlHttp = null;
+      // Função para buscar os clientes
+      function buscaClientes() {
+        // Instanciando o objeto XMLHttpRequest
+        if (window.XMLHttpRequest) {
+          xmlHttp = new XMLHttpRequest();
+        } else {
+          // IE5, IE5.5 ou IE6
+          xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        // Informando a função para tratamento do retorno
+        xmlHttp.onreadystatechange = respostaClientes;
+
+        // Enviando a requisição
+        xmlHttp.open("GET", "http://localhost/server.php", true);
+        xmlHttp.send();
+      }
+
+      // Função que trata a resposta do servidor para a busca de clientes
+      function respostaClientes() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+          // Recebendo dos dados em JSON e transformando para objetos em
+          var array = JSON.parse(xmlHttp.responseText);
+
+          // Montando o resultado
+          var resultado = "";
+          for (x in array) {
+            resultado =
+              resultado +
+              "Nome: " +
+              array[x].nome +
+              " Sobrenome: " +
+              array[x].sobrenome +
+              "<br/>";
+          }
+
+          // Apresentando o resultado por meio do DOM
+          document.getElementById("clientes").innerHTML = resultado;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Div para apresentar o resultado -->
+    <div id="clientes"></div>
+    <!-- Botão para buscar os dados de clientes no servidor -->
+    <button type="button" onclick="buscaClientes()">Buscar Clientes</button>
+  </body>
+</html>
